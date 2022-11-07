@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./foo.component.css']
 })
 export class FooComponent implements OnInit {
-  data:object;
-  loading : boolean;
-  o:Observable<object>;
+  data!:object;  //sarà il valore che conterrà il risultato della richiesta http
+  loading : boolean = false; //Una variabile che ci dice se siamo in attesa di una risposta dal server
+  o!:Observable<object>; //Un oggetto che notifica quando arriva la risposta http dal server
 
   constructor(public http: HttpClient) { }
 
@@ -23,7 +23,24 @@ export class FooComponent implements OnInit {
 
   getData = (d : Object) =>
   {
-    
+    this.data = d;
+    this.loading = false
+  }
+
+  makeCompactPost(): void {
+    this.loading = true;
+    this.http
+      .post('https://jsonplaceholder.typicode.com/posts',
+        JSON.stringify({
+          body: 'bar',
+          title: 'foo',
+          userId: 1
+        })
+      )
+      .subscribe(data => {
+        this.data = data;
+        this.loading = false;
+      });
   }
 
   ngOnInit(): void {
