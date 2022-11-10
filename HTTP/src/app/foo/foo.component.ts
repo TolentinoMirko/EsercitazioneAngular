@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Foo } from './foo.model';
 
 @Component({
   selector: 'app-foo',
@@ -8,11 +9,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./foo.component.css']
 })
 export class FooComponent implements OnInit {
+  fooData = Foo[];
   data!:object;  //sarà il valore che conterrà il risultato della richiesta http
   loading : boolean = false; //Una variabile che ci dice se siamo in attesa di una risposta dal server
   o!:Observable<object>; //Un oggetto che notifica quando arriva la risposta http dal server
+  oFoo! :Observable<object>;
 
   constructor(public http: HttpClient) { }
+
+  
+
+
 
   makeRequest():void{
     this.loading = true;
@@ -42,6 +49,15 @@ export class FooComponent implements OnInit {
         this.loading = false;
       });
   }
+
+  makeTypedRequest():void
+  {
+    this.oFoo = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts');
+    this.oFoo.subscribe(data => {this.fooData = data;});
+  }
+
+
+
 
   ngOnInit(): void {
   }
