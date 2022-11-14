@@ -8,12 +8,14 @@ import { Foo } from './foo.model';
   templateUrl: './foo.component.html',
   styleUrls: ['./foo.component.css']
 })
+
 export class FooComponent implements OnInit {
-  fooData = Foo[];
+  fooData! : Foo[];
+  oFoo! :Observable<Foo[]>;
   data!:object;  //sarà il valore che conterrà il risultato della richiesta http
   loading : boolean = false; //Una variabile che ci dice se siamo in attesa di una risposta dal server
   o!:Observable<object>; //Un oggetto che notifica quando arriva la risposta http dal server
-  oFoo! :Observable<object>;
+  
 
   constructor(public http: HttpClient) { }
 
@@ -52,9 +54,16 @@ export class FooComponent implements OnInit {
 
   makeTypedRequest():void
   {
-    this.oFoo = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts');
-    this.oFoo.subscribe(data => {this.fooData = data;});
+    this.oFoo = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts'); //fa una richiesta per un oggetto foo
+    this.oFoo.subscribe(this.gedData); //e lo sovrascrive in un geddata
   }
+
+
+  gedData = (d:Foo[]) => //arrow function
+  {
+    this.fooData = d
+  }
+  
 
 
 
