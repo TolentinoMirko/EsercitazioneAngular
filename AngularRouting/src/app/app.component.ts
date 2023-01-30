@@ -8,8 +8,13 @@ import { SpotifyService } from '../services/spotify.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  query!:string;
   title = 'AngularRouting';
   obsTrack: Observable<object>;
+  result:any;
+  
+
+
   constructor(public SpotifyService:SpotifyService){
     this.obsTrack = SpotifyService.searchTrack("I Really Want to Stay at Your House");
     this.obsTrack.subscribe((data)=>console.log(data));
