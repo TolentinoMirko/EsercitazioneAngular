@@ -10,19 +10,20 @@ import { SpotifyService } from '../services/spotify.service';
 export class AppComponent {
   query!:string;
   title = 'AngularRouting';
-  obsTrack: Observable<object>;
-  result:any;
+  obsTrack!: Observable<object>;
+  results:any;
 
 
 
   constructor(public spotify:SpotifyService){
+    /*
+    questa parte serve per cercare la canzone gia prescelta e inserirla nella console
+
     this.obsTrack = spotify.searchTrack("I Really Want to Stay at Your House");
     this.obsTrack.subscribe((data)=>console.log(data));
-    
+    */
   }
-/*
-  submit dell'interfaccia di ricerca
-  
+
      submit(query:HTMLInputElement): void {
     if (!query.value) {
       return;
@@ -32,5 +33,5 @@ export class AppComponent {
     this.obsTrack.subscribe((data) => this.results = data); 
   }
 
-    */
+    
 }
