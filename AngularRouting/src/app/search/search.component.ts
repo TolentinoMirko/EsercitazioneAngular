@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SpotifyService } from 'src/services/spotify.service';
 
@@ -7,31 +7,39 @@ import { SpotifyService } from 'src/services/spotify.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
-  query!:string;
-  title = 'AngularRouting';
-  obsTrack!: Observable<object>;
-  results:any;
+export class SearchComponent  {
+  query!: string;
+  title = 'first-routed-app';
+  obsTrack!: Observable<Object>;
+  results: any;
+  // faccio iniettare lo spotify service e faccio una ricerca
+  constructor(public spotify: SpotifyService) {
 
-
-
-  constructor(public spotify:SpotifyService){
-    /*
-    questa parte serve per cercare la canzone gia prescelta e inserirla nella console
-
-    this.obsTrack = spotify.searchTrack("I Really Want to Stay at Your House");
-    this.obsTrack.subscribe((data)=>console.log(data));
-    */
   }
 
-     submit(query:HTMLInputElement): void {
+  submit(query: HTMLInputElement): void {
+
     if (!query.value) {
       return;
     }
     this.query = query.value;
     this.obsTrack = this.spotify.searchTrack(this.query);
-    this.obsTrack.subscribe((data) => this.results = data); 
+    this.obsTrack.subscribe((data) => { this.results = data; console.log(this.results) });
   }
 
-    
+  renderResults(res: any): void {
+    this.results = null;
+    if (res && res.tracks && res.tracks.items) {
+      this.results = res.tracks.items;
+    }
+  }
+
 }
+
+
+ /*
+    questa parte serve per cercare la canzone gia prescelta e inserirla nella console
+
+    this.obsTrack = spotify.searchTrack("I Really Want to Stay at Your House");
+    this.obsTrack.subscribe((data)=>console.log(data));
+    */
