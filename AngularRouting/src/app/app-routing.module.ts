@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'search', component: SearchComponent },
   { path: 'track/:id', component: TrackComponent },
+  { path: '',   redirectTo: '/search', pathMatch: 'full' }
 ];
 
 @NgModule({
