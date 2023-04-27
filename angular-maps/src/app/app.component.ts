@@ -23,7 +23,7 @@ export class AppComponent {
     this.position = this.center;
     this.label = "ciao";
     this.position1 = { lat: 45.50165719082021, lng: 9.193760217371562 };
-    this.label1 = "casa";
+    this.label1 = "casa mia";
     this.circleOptions = { fillColor: 'red' }
     this.triangleOptions = {fillColor:'purple'}
     this.vertices = [
@@ -42,6 +42,11 @@ export class AppComponent {
     this.markerOptions = { icon: iconData }
   }
 
+  rosso() {
+    this.circleOptions = { fillColor: 'red' };
+    console.log("PROVA")
+  }
+
   giallo() {
     this.circleOptions = { fillColor: 'yellow' };
     console.log("PROVA")
@@ -51,8 +56,19 @@ export class AppComponent {
     this.circleOptions = { fillColor: 'blue' };
     console.log("PROVA")
   }
+
+  viola() {
+    this.triangleOptions = { fillColor: 'purple' };
+    console.log("PROVA")
+  }
+
   verde() {
     this.triangleOptions = { fillColor: 'lime' };
+    console.log("PROVA")
+  }
+
+  arancio() {
+    this.triangleOptions = { fillColor: 'orange' };
     console.log("PROVA")
   }
 }
