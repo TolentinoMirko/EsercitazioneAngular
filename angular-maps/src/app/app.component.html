@@ -17,7 +17,12 @@
               
   </map-circle>
 
-  <map-polygon [paths]="vertices">
+  <map-polygon [paths]="vertices"
+              [options] = 'triangleOptions'>
   </map-polygon>
 
 </google-map>
+
+<button (click)="giallo()">cerchio giallo</button>
+<button (click)="blu()">cerchio blu</button>
+<button (click)="verde()">triangolo verde</button>
