@@ -21,12 +21,14 @@ export class AppComponent implements AfterViewInit { //quando c'è implements si
   markerList: google.maps.MarkerOptions[] = [];
   zoom = 9;
 
-  constructor() {
+  constructor() {//appena carica la pagina parte il costruttore
 
     //Questi dati dovremmo scaricarli dal server, per ora li abbiamo copiati nel file     gojson.model.ts
     this.geoJsonObject = GEOJSON;
     console.log(this.geoJsonObject); //stampo l'oggetto geoJsonObject sulla console
     //console.log(this.geoJsonObject.features[0].geometry.coordinates[0][0]) per entrare dentro i "numeri" bisogna mettere le parentesi quadre
+    
+    this.markerGenerator();//quindi diciamo che appena carica la pagina carica pure questa funzione
   }
 
 
@@ -48,6 +50,29 @@ export class AppComponent implements AfterViewInit { //quando c'è implements si
       strokeWeight: 1
     });
   }
+
+  markerGenerator()
+  {
+    this.markerList =[
+      {
+        position : {
+          lng : this.geoJsonObject.features[0].geometry.coordinates[0][0][0],
+          lat : this.geoJsonObject.features[0].geometry.coordinates[0][0][1]
+        },
+        label: String(this.geoJsonObject.features[0].properties.id),
+      },
+      {
+        position : {
+          lng : this.geoJsonObject.features[1].geometry.coordinates[0][0][0],
+          lat : this.geoJsonObject.features[1].geometry.coordinates[0][0][1]
+        },
+        label: String(this.geoJsonObject.features[1].properties.id),
+      },
+    ]
+
   }
+
+
+}
 
 
