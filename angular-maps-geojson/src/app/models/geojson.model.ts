@@ -5,18 +5,18 @@ export class Geometry {
 
 export class GeoJson {
         public type: string=""; // adesso con angular bisogna inizializzare tutto le variabili
-        public geometry!: Geometry;
+        public geometry!: Geometry;//il geometry sarà la classe scritta sopra
         public properties?: any
 }
 
 export class GeoFeatureCollection
 {
     public type: string ="FeatureCollection";
-    public features : GeoJson[] = [];
+    public features : GeoJson[] = []; //il Geojson (è l'unito con il geometry) sarà quella spra
 }
 
 
-
+//le coordinate la quale dobbiamo lavorarci si trovano qui
 export const GEOJSON = {
     "type": "FeatureCollection",
     "features":
