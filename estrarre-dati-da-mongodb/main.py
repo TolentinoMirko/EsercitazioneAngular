@@ -69,11 +69,24 @@ def get_sezione(sezione):
             "CI_VETTORE":s['CI_VETTORE']})
     return jsonify({'result': output})
 
-@app.route('/geogeom', methods=['GET'])
-def get_all_stars():
+@app.route('/geogeom/<float:lng>/<float:lat>/<float:r>', methods=['GET'])
+def get_avg(lng, lat, r):
+    print(type(lng))
     mil4326WKT = mongo.db.MilWKT4326
     output = []
 
+    match = {
+        '$match': {
+            '$and':
+            [
+                {'EP_H_ND': {'$gt': 0}},
+                {'WGS84_X': {'$gt': lng - r}},
+                {'WGS84_X': {'$lt': lng + r}},
+                {'WGS84_Y': {'$gt': lat - r}},
+                {'WGS84_Y': {'$lt': lat + r}}
+            ]
+        }
+    }
     group = {
         '$group': {
             '_id': {
@@ -88,11 +101,17 @@ def get_all_stars():
             }
         }
     }
+    limit = {
+        '$limit': 10
+    }
 
-    for s in mil4326WKT.aggregate([group]):
-        output.append({'somma': s['SUM'], 'media': s['AVG'],
-                      'WKT': s['_id']['WKT'], 'SEZ': s['_id']['SEZ']})
-    return jsonify({'result': output})
+    for s in mil4326WKT.aggregate([match, group, limit]):
+        # Converte da WKT in GeoJson Geometry
+        g1 = shapely.wkt.loads(s['_id']['WKT'])
+        g2 = geojson.Feature(geometry=g1,
+                             properties={'id': s['_id']['SEZ'], 'media': s['AVG'], 'somma': s['SUM'], 'sezione': s['_id']['SEZ']})
+        output.append(g2)
+    return jsonify(geojson.FeatureCollection(output))
 
 # Checks to see if the name of the package is the run as the main package.
 if __name__ == "__main__":
