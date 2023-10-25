@@ -10,10 +10,10 @@ import { PokemonType } from './type.module';
 })
 export class AppComponent {
   title = 'ripasso-es-debito';
-  obs!: Observable<Object>;
-  data : Object = undefined!;
-  constructor(private http:HttpClient){
-    this.obs= this.http.get<PokemonType[]>("https://pokeapi.co/api/v2/type")
+  obs: Observable <PokemonType> ;
+  data!: PokemonType;
+  constructor(private http : HttpClient){
+    this.obs = this.http.get<PokemonType>("https://pokeapi.co/api/v2/type")
     this.obs.subscribe(this.doSomething)
   }
 

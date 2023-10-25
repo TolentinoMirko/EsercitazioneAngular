@@ -2,10 +2,10 @@ export interface PokemonType {
     count: number
     next: any
     previous: any
-    results: Result[]
+    results: Type[]
   }
   
-  export interface Result {
+  export interface Type {
     name: string
     url: string
   }
