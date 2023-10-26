@@ -12,6 +12,7 @@ export class AppComponent {
   title = 'ripasso-es-debito';
   obs: Observable <PokemonType> ;
   data!: PokemonType;
+  url!:any;
   constructor(private http : HttpClient){
     this.obs = this.http.get<PokemonType>("https://pokeapi.co/api/v2/type")
     this.obs.subscribe(this.doSomething)
@@ -19,5 +20,9 @@ export class AppComponent {
 
   doSomething = (data : PokemonType) => {
     this.data = data
+  }
+
+  getLastPart = (url : any) => {
+    this.url.split('/').pop()
   }
 }
