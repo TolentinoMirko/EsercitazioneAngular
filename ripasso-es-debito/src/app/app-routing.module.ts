@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TipiPokemonComponent } from './tipi-pokemon/tipi-pokemon.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 
+
 const routes: Routes = [
-  {path: 'pokemon',component:PokemonComponent}
+  {path: "",component:TipiPokemonComponent},
+  {path: "pokemon/:path",component:PokemonComponent}
 ];
 
 @NgModule({
