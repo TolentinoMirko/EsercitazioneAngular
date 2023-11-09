@@ -13,6 +13,7 @@ export class PokemonComponent {
   pokemon : any;
   pokemonObs! : Observable<Object>;
   pokemonList : any;
+
   constructor(
     private route: ActivatedRoute,
     private http : HttpClient) { }
@@ -26,8 +27,8 @@ export class PokemonComponent {
   getRouterParam = (params: ParamMap) => {
     let pokemon = params.get('path'); //Ottengo l'id dalla ParamMap
     console.log(pokemon); //Stampo su console
-    if (pokemon != null) {
-      this.pokemonObs = this.http.get<any>(`https://pokeapi.co/api/v2/type/${pokemon}`)
+    if (pokemon != null) { //se è diverso dal null allora esegui quello sotto
+      this.pokemonObs = this.http.get<any>(`https://pokeapi.co/api/v2/type/${pokemon}`) //va a prendere il json del tipo selezionato 
       this.pokemonObs.subscribe(this.dosomething)
     }
   }
