@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TipiPokemonComponent } from './tipi-pokemon/tipi-pokemon.component';
-import { PokemonComponent } from './pokemon/pokemon.component';
+import { RouterModule, Routes } from "@angular/router";
+import { PokemonComponent } from "./pokemon/pokemon.component";
+import { TipiPokemonComponent } from "./tipi-pokemon/tipi-pokemon.component";
+import { NgModule } from "@angular/core";
+
 
 
 const routes: Routes = [

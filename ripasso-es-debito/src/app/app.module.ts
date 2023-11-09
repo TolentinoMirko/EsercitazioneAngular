@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TipiPokemonComponent } from './tipi-pokemon/tipi-pokemon.component';
+import { PokemonComponent } from './pokemon/pokemon.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TipiPokemonComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,
@@ -17,3 +22,4 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
