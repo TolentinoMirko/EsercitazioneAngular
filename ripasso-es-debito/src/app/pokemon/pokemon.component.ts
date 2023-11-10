@@ -28,7 +28,7 @@ export class PokemonComponent {
     let pokemon = params.get('path'); //Ottengo l'id dalla ParamMap
     console.log(pokemon); //Stampo su console
     if (pokemon != null) { //se è diverso dal null allora esegui quello sotto
-      this.pokemonObs = this.http.get<any>(`https://pokeapi.co/api/v2/type/${pokemon}`) //va a prendere il json del tipo selezionato 
+      this.pokemonObs = this.http.get<any>(`https://pokeapi.co/api/v2/type/${pokemon}`) //va a prendere il json del tipo selezionato dal url con il numero del tipo
       this.pokemonObs.subscribe(this.dosomething)
     }
   }
@@ -37,4 +37,10 @@ export class PokemonComponent {
     this.pokemonList = data;
     console.log(this.pokemonList)
   }
+  getLastPart(data: string){
+    let url = data.split("/").slice(-2)
+    console.log(url[0])
+    return url[0]
+  }
 }
+
