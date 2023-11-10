@@ -1,11 +1,13 @@
-<img src={{pokemonDetailsList.sprites.front_default}}>
 
+<div  id="outPopUp">
 <h1>{{pokemonDetailsList.name}}</h1>
+<img src={{pokemonDetailsList.sprites.front_default}} width="250" height="250">
+
 <h3>Height:</h3> 
 <p>{{pokemonDetailsList.height}}</p>
 <h3>Moves:</h3>
 <ul *ngFor = "let move of pokemonDetailsList.moves">
     <li>{{move.move.name}}</li>
 </ul>
-
+</div>
 
