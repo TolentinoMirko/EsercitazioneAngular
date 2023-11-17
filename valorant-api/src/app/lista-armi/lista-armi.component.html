@@ -2,7 +2,7 @@
 <ul>
     <li *ngFor = "let arma of data.data">
         <!-- <a routerLink = "/pokemon/{{getLastPart(tipo.url)}}">{{tipo.name}}</a> -->
-        <h4><a>{{arma.displayName}}</a></h4>
+        <h4><a routerLink = "/armi/{{getLastPart(arma.uuid)}}">{{arma.displayName}}</a></h4>
         <hr>
     </li>
 </ul>

@@ -23,4 +23,10 @@ export class ListaAgentiComponent {
     this.data = data
     console.log(data)
   }
+
+  getLastPart(data: string){
+    let url = data.split("/").slice(-2)
+    console.log(url[0])
+    return url[0]
+  }
 }

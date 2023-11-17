@@ -1,0 +1,12 @@
+
+<img src="{{agenteList.data.displayIcon}}">
+<h1>{{agenteList.data.displayName}}</h1>
+<h3>Role:</h3> 
+<p>{{agenteList.data.role.displayName}}</p>
+<h3>Description:</h3>
+<p>{{agenteList.data.description}}</p>
+<h3>Abilities:</h3>
+<ul *ngFor = "let abilita of agenteList.data.abilities">
+    <h4>{{abilita.displayName}}</h4>
+    <p>{{abilita.description}}</p>
+</ul>

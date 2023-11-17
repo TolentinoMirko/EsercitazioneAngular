@@ -1,8 +1,8 @@
 <h1>Armi di Valorant</h1>
 <ul>
     <li *ngFor = "let agente of data.data">
-        <!-- <a routerLink = "/pokemon/{{getLastPart(tipo.url)}}">{{tipo.name}}</a> -->
-        <h4><a>{{agente.displayName}}</a></h4>
+       
+        <h4><a routerLink = "/agenti/{{getLastPart(agente.uuid)}}">{{agente.displayName}}</a></h4>
         <hr>
     </li>
 </ul>
